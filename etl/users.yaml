@@ -1,0 +1,9 @@
+users:
+  - full_name: John Doe
+    links:
+      - https://github.com/yTKONOSINA/Argentinian-Sign-Language-Recognition.git
+      - https://github.com/yTKONOSINA/data-pipeline-demo.git
+
+  - full_name: David Laid
+    links:
+      - https://github.com/yTKONOSINA/Shop.git
