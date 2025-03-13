@@ -11,3 +11,6 @@ users:
   - full_name: Will Tennyson
     links:
       - https://d2l.ai/d2l-en.pdf
+      - https://docs.zenml.io
+      - https://mlflow.org/docs/latest/getting-started/quickstart-2/index.html#compare-the-results
+      - https://airflow.apache.org

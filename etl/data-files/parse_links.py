@@ -10,6 +10,7 @@ def parse_links(user_uuid : ObjectId, links : list):
     user = User(uuid=user_uuid)
     for link in links:
         file_contents = director.extract(link=link)
+        # if change the file depending on the content, not always gitrepo
         user.create_gitrepo().write_to_mongo(content=file_contents)
 
 if __name__ == '__main__':
