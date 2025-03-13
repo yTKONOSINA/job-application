@@ -4,7 +4,7 @@ from bson.objectid import ObjectId
 from parsers import Director
 from zenml import step
 
-@step
+@step(enable_cache=False)
 def parse_links(user_uuid : ObjectId, links : list):
     director = Director()
     user = User(uuid=user_uuid)

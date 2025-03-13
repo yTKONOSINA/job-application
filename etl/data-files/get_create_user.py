@@ -3,7 +3,7 @@ from zenml import step
 from database import users_collection
 from datetime import datetime
 
-@step
+@step(enable_cache=False)
 def get_create_user(user_full_name: str) -> ObjectId:
     """
     Searches or creates a user using their full name

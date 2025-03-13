@@ -9,7 +9,9 @@ class Document:
     def __init__(self, uuid):  # Added default value for info
         self.uuid = uuid
 
-    def write_to_mongo(self, content):
+    def write_to_mongo(self, content : list | None):
+        if (content == None):
+            return
         result = users_collection.update_one(
             {'_id': self.uuid},  # Query to find user by UUID
             {'$push': {'content': {'$each': content}}},  # Append each item in the list
