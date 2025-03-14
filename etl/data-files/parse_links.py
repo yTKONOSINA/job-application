@@ -1,4 +1,3 @@
-from uuid import UUID, uuid4
 from basefile import User
 from bson.objectid import ObjectId
 from parsers import Director

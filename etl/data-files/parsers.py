@@ -1,3 +1,4 @@
+from typing import Annotated
 from loguru import logger
 import subprocess
 import shutil
@@ -13,7 +14,7 @@ class Gitparser:
         # Return an instance of Gitparser (note the parentheses)
         return cls()
 
-    def extract(self, repo_url: str) -> list:
+    def extract(self, repo_url: str) -> Annotated[list, "Repo's code"]:
         # Automatically determine the clone directory from the repo_url.
         # It takes the last part of the URL, and if it ends with '.git', removes it.
         repo_name = repo_url.rstrip('/').split('/')[-1]
@@ -51,7 +52,7 @@ class PDFparser:
     def create(cls):
         return cls()
     
-    def extract(self, url : str) -> list | None:
+    def extract(self, url : str) -> Annotated[list | None, "Content's of pdf"]:
         # Step 1: Download the PDF
         pdf_path = "temp.pdf"  # Temporary file name
 
@@ -85,7 +86,7 @@ class DefaultParser:
     def create(cls):
         return cls()
     
-    def extract(self, url : str) -> list | None:
+    def extract(self, url : str) -> Annotated[list | None, "Content's of url"]:
         # Send an HTTP request
         response = requests.get(url)
 

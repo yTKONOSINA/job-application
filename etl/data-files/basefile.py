@@ -2,8 +2,9 @@ import uuid
 from abc import ABC, abstractmethod
 from pymongo import MongoClient 
 
+from database import DataBase
 
-from database import users_collection
+users_collection = DataBase().users_collection
 
 class Document:
     def __init__(self, uuid):  # Added default value for info

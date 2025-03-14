@@ -1,10 +1,14 @@
+from uuid import UUID, uuid4
+from typing import Annotated
 from bson.objectid import ObjectId
-from zenml import step
-from database import users_collection
+from zenml import step, log_artifact_metadata
+from database import DataBase
 from datetime import datetime
 
+users_collection = DataBase().users_collection
+
 @step(enable_cache=False)
-def get_create_user(user_full_name: str) -> ObjectId:
+def get_create_user(user_full_name: str) -> Annotated[ObjectId, 'User ID']:
     """
     Searches or creates a user using their full name
     Args:
@@ -22,9 +26,17 @@ def get_create_user(user_full_name: str) -> ObjectId:
     # If user doesn't exist, create new user and return their ObjectId
     new_user = {
         "full_name": user_full_name,
-        "created_at": datetime.now()
+        "created_at": datetime.now(),
+        "uuid": uuid4()
     }
     result = users_collection.insert_one(new_user)
+
+    log_artifact_metadata(
+        artifact_name = f"User_ID",
+        version = None,
+        metadata = {"User's full name is " : user_full_name}
+    )
+
     return ObjectId(result.inserted_id)
 
 if __name__ == '__main__':
